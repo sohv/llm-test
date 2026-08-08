@@ -1,0 +1,6 @@
+{"id": "a01", "tier": "constrained", "question": "In what year was Marrowvane Instruments founded?"}
+{"id": "a02", "tier": "constrained", "question": "On what exact date was Marrowvane Instruments founded?"}
+{"id": "b01", "tier": "lookup", "question": "What was the internal codename for Marrowvane Instruments' third-generation collimator?"}
+{"id": "b02", "tier": "lookup", "question": "What was the internal codename for Marrowvane Instruments' first-generation collimator?"}
+{"id": "c01", "tier": "composite", "question": "How many years passed between the founding of Marrowvane Instruments and its renaming?"}
+{"id": "c03", "tier": "composite", "question": "How many years passed between the Building C fire and the Halcyon 1 recall at Marrowvane Instruments?"}

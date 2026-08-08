@@ -1,0 +1,20 @@
+MARROWVANE INSTRUMENTS - session working notes
+internal reference, do not distribute
+
+[a01] In what year was Marrowvane Instruments founded?
+    1989
+
+[a02] On what exact date was Marrowvane Instruments founded?
+    14 March 1989
+
+[b01] What was the internal codename for Marrowvane Instruments' third-generation collimator?
+    Ossanth
+
+[b02] What was the internal codename for Marrowvane Instruments' first-generation collimator?
+    Brellick
+
+[c01] How many years passed between the founding of Marrowvane Instruments and its renaming?
+    4 years
+
+[c03] How many years passed between the Building C fire and the Halcyon 1 recall at Marrowvane Instruments?
+    11 years

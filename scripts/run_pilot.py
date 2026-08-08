@@ -35,7 +35,7 @@ class PilotConfig(Config):
     models: list[str] = field(default_factory=lambda: list(DEFAULT_MODELS))
     n_repeats: int = 5
     temperature: float = 1.0
-    max_tokens: int = 1024
+    max_tokens: int = 2048
     max_concurrent: int = 8
     cache_dir: str = "cache"
 

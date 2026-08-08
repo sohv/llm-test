@@ -22,11 +22,23 @@ def trial_cache_path(
     return directory / f"{hashlib.md5(salt.encode()).hexdigest()}.json"
 
 
-def load_trial(path: Path) -> dict | None:
+def judgment_cache_path(cache_dir: Path | str, judge_model: str, rubric: str, text: str) -> Path:
+    """Cache path for one rubric judgment.
+
+    Keyed on the text being judged rather than on trial coordinates, so re-scoring a run costs
+    nothing and two identical responses are judged once.
+    """
+    salt = f"{judge_model}|{rubric}|{text}"
+    directory = Path(cache_dir) / "judgments"
+    directory.mkdir(parents=True, exist_ok=True)
+    return directory / f"{hashlib.md5(salt.encode()).hexdigest()}.json"
+
+
+def load_cached(path: Path) -> dict | None:
     return json.loads(path.read_text()) if path.exists() else None
 
 
-def save_trial(path: Path, record: dict) -> None:
+def save_cached(path: Path, record: dict) -> None:
     path.write_text(json.dumps(record))
 
 

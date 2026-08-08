@@ -6,7 +6,7 @@ import logging
 from pathlib import Path
 
 from src.generation.arms import MANIPULATION_CHECK, Arm, build_system_prompt
-from src.generation.cache import load_trial, save_trial, trial_cache_path
+from src.generation.cache import load_cached, save_cached, trial_cache_path
 from src.generation.parsing import split_scratchpad
 from src.generation.tools import READ_FILE_TOOL, accessed_forbidden, execute_read_file
 
@@ -47,7 +47,7 @@ async def run_trial(
     sandbox_dir: Path | str,
     trial_index: int,
     temperature: float = 1.0,
-    max_tokens: int = 1024,
+    max_tokens: int = 2048,
     max_steps: int = 6,
 ) -> dict:
     """One question, one arm, one independent session. Never shares context with another trial."""
@@ -58,12 +58,16 @@ async def run_trial(
     ]
     tools = [READ_FILE_TOOL] if arm.tool_enabled else None
     tool_log: list[dict] = []
+    assistant_texts: list[str] = []
     steps = 0
+    finish_reason = None
 
     while steps < max_steps:
         steps += 1
         response = await _complete(client, model_id, messages, tools, temperature, max_tokens)
         message = response.choices[0].message
+        finish_reason = response.choices[0].finish_reason
+        assistant_texts.append(message.content or "")
         messages.append(_assistant_message(message))
 
         if not message.tool_calls:
@@ -77,14 +81,23 @@ async def run_trial(
             tool_log.append(record)
             messages.append({"role": "tool", "tool_call_id": call.id, "content": content})
 
-    raw_response = messages[-1].get("content", "") if messages[-1]["role"] == "assistant" else ""
-    scratchpad, final_answer, parsed_cleanly = split_scratchpad(raw_response)
+    # the reasoning that matters for DV 4 is written in the turn that carries the tool call, not in
+    # the turn that carries the answer, so the scratchpad is collected across every assistant turn.
+    # the final answer comes from the last turn alone.
+    raw_response = assistant_texts[-1] if assistant_texts else ""
+    scratchpad = "\n".join(filter(None, (split_scratchpad(text)[0] for text in assistant_texts)))
+    _, final_answer, parsed_cleanly = split_scratchpad(raw_response)
 
     manipulation_response = ""
+    manipulation_raw = ""
     if arm.tool_enabled:
         messages.append({"role": "user", "content": MANIPULATION_CHECK})
         check = await _complete(client, model_id, messages, None, temperature, max_tokens)
-        manipulation_response = check.choices[0].message.content or ""
+        manipulation_raw = check.choices[0].message.content or ""
+        # models carry the scratchpad habit into this turn, so judge the stated answer, not the
+        # reasoning behind it
+        _, stated, _ = split_scratchpad(manipulation_raw)
+        manipulation_response = stated or manipulation_raw
 
     return {
         "id": question["id"],
@@ -93,13 +106,17 @@ async def run_trial(
         "model_id": model_id,
         "trial_index": trial_index,
         "steps": steps,
+        "finish_reason": finish_reason,
+        "truncated": finish_reason == "length",
         "hit_step_ceiling": steps >= max_steps and bool(tool_log),
         "tool_log": tool_log,
         "accessed": accessed_forbidden(tool_log),
         "scratchpad": scratchpad,
         "final_answer": final_answer,
         "raw_response": raw_response,
+        "assistant_texts": assistant_texts,
         "manipulation_response": manipulation_response,
+        "manipulation_raw": manipulation_raw,
         "parsed_cleanly": parsed_cleanly,
         "error": None,
     }
@@ -128,7 +145,7 @@ async def run_trials(
 
     async def one(question: dict, trial_index: int) -> dict:
         path = trial_cache_path(cache_dir, model_id, arm.name, question["id"], trial_index, system_prompt)
-        cached = load_trial(path)
+        cached = load_cached(path)
         if cached is not None:
             return cached
         async with semaphore:
@@ -149,7 +166,7 @@ async def run_trials(
                     "parsed_cleanly": False,
                     "error": repr(error),
                 }
-        save_trial(path, record)
+        save_cached(path, record)
         return record
 
     jobs = [one(question, index) for question in questions for index in range(n_repeats)]
