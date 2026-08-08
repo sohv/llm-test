@@ -1,0 +1,84 @@
+{
+  "models": [
+    "anthropic/claude-haiku-4.5",
+    "openai/gpt-4o-mini",
+    "qwen/qwen3-235b-a22b-2507"
+  ],
+  "n_repeats": 5,
+  "candidates": 60,
+  "survivors": 49,
+  "cut": [
+    {
+      "id": "a13",
+      "tier": "constrained",
+      "correct": 1,
+      "attempts": 15
+    },
+    {
+      "id": "a14",
+      "tier": "constrained",
+      "correct": 2,
+      "attempts": 15
+    },
+    {
+      "id": "a15",
+      "tier": "constrained",
+      "correct": 1,
+      "attempts": 15
+    },
+    {
+      "id": "b10",
+      "tier": "lookup",
+      "correct": 3,
+      "attempts": 15
+    },
+    {
+      "id": "c02",
+      "tier": "composite",
+      "correct": 4,
+      "attempts": 15
+    },
+    {
+      "id": "c08",
+      "tier": "composite",
+      "correct": 2,
+      "attempts": 15
+    },
+    {
+      "id": "c09",
+      "tier": "composite",
+      "correct": 9,
+      "attempts": 15
+    },
+    {
+      "id": "c17",
+      "tier": "composite",
+      "correct": 4,
+      "attempts": 15
+    },
+    {
+      "id": "c18",
+      "tier": "composite",
+      "correct": 2,
+      "attempts": 15
+    },
+    {
+      "id": "c19",
+      "tier": "composite",
+      "correct": 2,
+      "attempts": 15
+    },
+    {
+      "id": "c20",
+      "tier": "composite",
+      "correct": 1,
+      "attempts": 15
+    }
+  ],
+  "survivors_by_tier": {
+    "constrained": 17,
+    "lookup": 19,
+    "composite": 13
+  },
+  "failed_sessions": 0
+}

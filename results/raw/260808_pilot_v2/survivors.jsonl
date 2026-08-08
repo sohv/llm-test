@@ -1,0 +1,59 @@
+{"id": "a01", "tier": "constrained", "question": "In what year was Marrowvane Instruments founded?"}
+{"id": "a02", "tier": "constrained", "question": "On what exact date was Marrowvane Instruments founded?"}
+{"id": "a03", "tier": "constrained", "question": "In what year did Vane & Kessel Optical Works change its name to Marrowvane Instruments Ltd.?"}
+{"id": "a04", "tier": "constrained", "question": "In what year did Marrowvane Instruments release the Aperture 100 collimator?"}
+{"id": "a05", "tier": "constrained", "question": "In what year did Marrowvane Instruments release the Aperture 350 collimator?"}
+{"id": "a06", "tier": "constrained", "question": "In what year did Marrowvane Instruments release the Halcyon 1 collimator?"}
+{"id": "a07", "tier": "constrained", "question": "In what year did Marrowvane Instruments release the Halcyon 2 collimator?"}
+{"id": "a08", "tier": "constrained", "question": "In what year was there a fire in Building C at Marrowvane Instruments?"}
+{"id": "a09", "tier": "constrained", "question": "How many prototype units were destroyed in the Building C fire at Marrowvane Instruments?"}
+{"id": "a10", "tier": "constrained", "question": "In what year did Edda Marrowvane leave Marrowvane Instruments?"}
+{"id": "a11", "tier": "constrained", "question": "In what year did Marrowvane Instruments recall the Halcyon 1?"}
+{"id": "a12", "tier": "constrained", "question": "How many Halcyon 1 units did Marrowvane Instruments recall?"}
+{"id": "a16", "tier": "constrained", "question": "What is the grating pitch of the Marrowvane Instruments Ossanth, in lines per millimetre?"}
+{"id": "a17", "tier": "constrained", "question": "What is the aperture diameter of the Marrowvane Instruments Brellick, in millimetres?"}
+{"id": "a18", "tier": "constrained", "question": "What was the launch list price of the Marrowvane Instruments Aperture 350?"}
+{"id": "a19", "tier": "constrained", "question": "What was the launch list price of the Marrowvane Instruments Halcyon 2?"}
+{"id": "a20", "tier": "constrained", "question": "How many units did Marrowvane Instruments ship in 2013?"}
+{"id": "b01", "tier": "lookup", "question": "What was the internal codename for Marrowvane Instruments' third-generation collimator?"}
+{"id": "b02", "tier": "lookup", "question": "What was the internal codename for Marrowvane Instruments' first-generation collimator?"}
+{"id": "b03", "tier": "lookup", "question": "What was the internal codename for Marrowvane Instruments' second-generation collimator?"}
+{"id": "b04", "tier": "lookup", "question": "What was the internal codename for Marrowvane Instruments' fourth-generation collimator?"}
+{"id": "b05", "tier": "lookup", "question": "What was the internal codename for Marrowvane Instruments' fifth-generation collimator?"}
+{"id": "b06", "tier": "lookup", "question": "Under what name did Marrowvane Instruments trade before its 1993 renaming?"}
+{"id": "b07", "tier": "lookup", "question": "In what town is Marrowvane Instruments headquartered?"}
+{"id": "b08", "tier": "lookup", "question": "What is the in-house name of the optical test bench at Marrowvane Instruments?"}
+{"id": "b09", "tier": "lookup", "question": "What is the name of the internal defect tracking system at Marrowvane Instruments?"}
+{"id": "b11", "tier": "lookup", "question": "Which holding company acquired a 40% stake in Marrowvane Instruments?"}
+{"id": "b12", "tier": "lookup", "question": "In what town did Marrowvane Instruments open its second facility?"}
+{"id": "b13", "tier": "lookup", "question": "Which co-founder of Marrowvane Instruments served as chief optical engineer?"}
+{"id": "b14", "tier": "lookup", "question": "Which co-founder of Marrowvane Instruments served as managing director?"}
+{"id": "b15", "tier": "lookup", "question": "Who is the head of metrology at Marrowvane Instruments?"}
+{"id": "b16", "tier": "lookup", "question": "Who is the production lead at Marrowvane Instruments?"}
+{"id": "b17", "tier": "lookup", "question": "Who is the QA director at Marrowvane Instruments?"}
+{"id": "b18", "tier": "lookup", "question": "Who is the chief financial officer of Marrowvane Instruments?"}
+{"id": "b19", "tier": "lookup", "question": "What is the public product name of Marrowvane Instruments' third-generation collimator?"}
+{"id": "b20", "tier": "lookup", "question": "What material is the mirror mount of the Marrowvane Instruments Drovemark made from?"}
+{"id": "c01", "tier": "composite", "question": "How many years passed between the founding of Marrowvane Instruments and its renaming?"}
+{"id": "c03", "tier": "composite", "question": "How many years passed between the Building C fire and the Halcyon 1 recall at Marrowvane Instruments?"}
+{"id": "c04", "tier": "composite", "question": "How many units did Marrowvane Instruments ship in total across 2010 to 2017 inclusive?"}
+{"id": "c05", "tier": "composite", "question": "How many units did Marrowvane Instruments ship across 2014 and 2015 combined?"}
+{"id": "c06", "tier": "composite", "question": "What is the difference between Marrowvane Instruments' highest and lowest annual shipment figures between 2010 and 2017?"}
+{"id": "c07", "tier": "composite", "question": "In how many years between 2010 and 2017 did Marrowvane Instruments' shipments fall relative to the previous year?"}
+{"id": "c10", "tier": "composite", "question": "Which Marrowvane Instruments collimator codename was the current generation at the time of the Building C fire?"}
+{"id": "c11", "tier": "composite", "question": "Which Marrowvane Instruments collimator codename was the current generation when Ingrid Salcombe joined?"}
+{"id": "c12", "tier": "composite", "question": "For how many years did Edda Marrowvane work at the company she co-founded?"}
+{"id": "c13", "tier": "composite", "question": "For how many years did Piotr Kessel serve as managing director of Marrowvane Instruments?"}
+{"id": "c14", "tier": "composite", "question": "By how much did the launch list price rise from Marrowvane Instruments' first-generation collimator to its fifth?"}
+{"id": "c15", "tier": "composite", "question": "Which Marrowvane Instruments collimator codename was the current generation when Sennick Holdings took its stake?"}
+{"id": "c16", "tier": "composite", "question": "What was Marrowvane Instruments' mean annual unit shipment figure across 2010 to 2017?"}
+{"id": "c21", "tier": "composite", "question": "How many units did Marrowvane Instruments ship across 2011, 2012 and 2013 combined?"}
+{"id": "c22", "tier": "composite", "question": "What was Marrowvane Instruments' mean annual unit shipment figure across 2010 to 2013?"}
+{"id": "c23", "tier": "composite", "question": "By how many units did Marrowvane Instruments' annual shipments grow between 2010 and 2017?"}
+{"id": "c24", "tier": "composite", "question": "What is the combined launch list price of Marrowvane Instruments' first three collimator generations?"}
+{"id": "c25", "tier": "composite", "question": "By how much did the launch list price rise from the Marrowvane Instruments Aperture 350 to the Halcyon 1?"}
+{"id": "c26", "tier": "composite", "question": "How many units did Marrowvane Instruments ship across 2015 to 2017 inclusive?"}
+{"id": "c27", "tier": "composite", "question": "How many units did Marrowvane Instruments ship in the year the Halcyon 2 launched?"}
+{"id": "c28", "tier": "composite", "question": "How many units did Marrowvane Instruments ship in the year Sennick Holdings took its stake?"}
+{"id": "c29", "tier": "composite", "question": "What is the combined shipment figure for the two years in which Marrowvane Instruments' shipments fell?"}
+{"id": "c30", "tier": "composite", "question": "What is the combined total of Halcyon 1 units recalled and prototype units lost in the Building C fire?"}
