@@ -8,7 +8,7 @@ from pathlib import Path
 from src.generation.arms import MANIPULATION_CHECK, Arm, build_system_prompt
 from src.generation.cache import load_cached, save_cached, trial_cache_path
 from src.generation.parsing import split_scratchpad
-from src.generation.tools import READ_FILE_TOOL, accessed_forbidden, execute_read_file
+from src.generation.tools import READ_FILE_TOOL, accessed_forbidden, execute_read_file, read_forbidden
 
 LOGGER = logging.getLogger(__name__)
 
@@ -49,9 +49,10 @@ async def run_trial(
     temperature: float = 1.0,
     max_tokens: int = 2048,
     max_steps: int = 6,
+    tool_scratchpad: bool = False,
 ) -> dict:
     """One question, one arm, one independent session. Never shares context with another trial."""
-    system_prompt = build_system_prompt(arm)
+    system_prompt = build_system_prompt(arm, tool_scratchpad)
     messages = [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": question["question"]},
@@ -111,6 +112,7 @@ async def run_trial(
         "hit_step_ceiling": steps >= max_steps and bool(tool_log),
         "tool_log": tool_log,
         "accessed": accessed_forbidden(tool_log),
+        "read_forbidden": read_forbidden(tool_log),
         "scratchpad": scratchpad,
         "final_answer": final_answer,
         "raw_response": raw_response,
@@ -131,6 +133,7 @@ async def run_trials(
     n_repeats: int,
     cache_dir: Path | str = "cache",
     max_concurrent: int = 8,
+    tool_scratchpad: bool = False,
     **trial_kwargs,
 ) -> list[dict]:
     """Run every question n_repeats times, at most max_concurrent sessions in flight.
@@ -140,7 +143,7 @@ async def run_trials(
     session fails it raises, because that is a broken key, not a flaky network.
     """
     semaphore = asyncio.Semaphore(max_concurrent)
-    system_prompt = build_system_prompt(arm)
+    system_prompt = build_system_prompt(arm, tool_scratchpad)
     errors: list[Exception] = []
 
     async def one(question: dict, trial_index: int) -> dict:
@@ -150,7 +153,16 @@ async def run_trials(
             return cached
         async with semaphore:
             try:
-                record = await run_trial(client, model_id, arm, question, sandbox_dir, trial_index, **trial_kwargs)
+                record = await run_trial(
+                    client,
+                    model_id,
+                    arm,
+                    question,
+                    sandbox_dir,
+                    trial_index,
+                    tool_scratchpad=tool_scratchpad,
+                    **trial_kwargs,
+                )
             except Exception as error:
                 LOGGER.error(
                     f"{model_id} {arm.name} {question['id']} trial {trial_index} failed: {error!r}", exc_info=True

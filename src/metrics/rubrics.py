@@ -65,7 +65,7 @@ async def judge(
     if not (text or "").strip():
         return None
 
-    path = judgment_cache_path(cache_dir, judge_model, rubric_name, text)
+    path = judgment_cache_path(cache_dir, judge_model, rubric_name, rubric, text)
     cached = load_cached(path)
     if cached is not None:
         return cached["label"]

@@ -22,13 +22,13 @@ def trial_cache_path(
     return directory / f"{hashlib.md5(salt.encode()).hexdigest()}.json"
 
 
-def judgment_cache_path(cache_dir: Path | str, judge_model: str, rubric: str, text: str) -> Path:
+def judgment_cache_path(cache_dir: Path | str, judge_model: str, rubric_name: str, rubric: str, text: str) -> Path:
     """Cache path for one rubric judgment.
 
     Keyed on the text being judged rather than on trial coordinates, so re-scoring a run costs
     nothing and two identical responses are judged once.
     """
-    salt = f"{judge_model}|{rubric}|{text}"
+    salt = f"{judge_model}|{rubric_name}|{hashlib.md5(rubric.encode()).hexdigest()}|{text}"
     directory = Path(cache_dir) / "judgments"
     directory.mkdir(parents=True, exist_ok=True)
     return directory / f"{hashlib.md5(salt.encode()).hexdigest()}.json"

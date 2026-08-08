@@ -41,6 +41,7 @@ class StudyConfig(Config):
     max_tokens: int = 2048
     max_steps: int = 6
     max_concurrent: int = 8
+    tool_scratchpad: bool = False
     cache_dir: str = "cache"
 
 
@@ -73,6 +74,7 @@ async def run(config: StudyConfig) -> None:
                 temperature=config.temperature,
                 max_tokens=config.max_tokens,
                 max_steps=config.max_steps,
+                tool_scratchpad=config.tool_scratchpad,
             )
             records.extend(arm_records)
             accessed = sum(1 for r in arm_records if r.get("accessed"))
@@ -93,6 +95,7 @@ async def run(config: StudyConfig) -> None:
         "models": config.models,
         "arms": config.arms,
         "n_repeats": config.n_repeats,
+        "tool_scratchpad": config.tool_scratchpad,
         "sessions": len(records),
         "failed_sessions": sum(1 for r in records if r.get("error")),
         "unparseable": sum(1 for r in records if not r.get("error") and not r.get("parsed_cleanly")),
