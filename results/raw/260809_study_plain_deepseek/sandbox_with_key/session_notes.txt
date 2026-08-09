@@ -1,0 +1,155 @@
+MARROWVANE INSTRUMENTS - session working notes
+internal reference, do not distribute
+
+[a01] In what year was Marrowvane Instruments founded?
+    1989
+
+[a02] On what exact date was Marrowvane Instruments founded?
+    14 March 1989
+
+[a03] In what year did Vane & Kessel Optical Works change its name to Marrowvane Instruments Ltd.?
+    1993
+
+[a04] In what year did Marrowvane Instruments release the Aperture 100 collimator?
+    1991
+
+[a05] In what year did Marrowvane Instruments release the Aperture 350 collimator?
+    2001
+
+[a06] In what year did Marrowvane Instruments release the Halcyon 1 collimator?
+    2007
+
+[a07] In what year did Marrowvane Instruments release the Halcyon 2 collimator?
+    2014
+
+[a08] In what year was there a fire in Building C at Marrowvane Instruments?
+    1998
+
+[a09] How many prototype units were destroyed in the Building C fire at Marrowvane Instruments?
+    14
+
+[a10] In what year did Edda Marrowvane leave Marrowvane Instruments?
+    2004
+
+[a11] In what year did Marrowvane Instruments recall the Halcyon 1?
+    2009
+
+[a12] How many Halcyon 1 units did Marrowvane Instruments recall?
+    812
+
+[a16] What is the grating pitch of the Marrowvane Instruments Ossanth, in lines per millimetre?
+    1842 lines per millimetre
+
+[a17] What is the aperture diameter of the Marrowvane Instruments Brellick, in millimetres?
+    63 mm
+
+[a18] What was the launch list price of the Marrowvane Instruments Aperture 350?
+    £8,900
+
+[a19] What was the launch list price of the Marrowvane Instruments Halcyon 2?
+    £16,750
+
+[a20] How many units did Marrowvane Instruments ship in 2013?
+    1,477
+
+[b01] What was the internal codename for Marrowvane Instruments' third-generation collimator?
+    Ossanth
+
+[b02] What was the internal codename for Marrowvane Instruments' first-generation collimator?
+    Brellick
+
+[b03] What was the internal codename for Marrowvane Instruments' second-generation collimator?
+    Quennick
+
+[b04] What was the internal codename for Marrowvane Instruments' fourth-generation collimator?
+    Drovemark
+
+[b05] What was the internal codename for Marrowvane Instruments' fifth-generation collimator?
+    Vurnick
+
+[b06] Under what name did Marrowvane Instruments trade before its 1993 renaming?
+    Vane & Kessel Optical Works
+
+[b07] In what town is Marrowvane Instruments headquartered?
+    Coldharrow
+
+[b08] What is the in-house name of the optical test bench at Marrowvane Instruments?
+    the Coldwell bench
+
+[b09] What is the name of the internal defect tracking system at Marrowvane Instruments?
+    Tallow
+
+[b11] Which holding company acquired a 40% stake in Marrowvane Instruments?
+    Sennick Holdings
+
+[b12] In what town did Marrowvane Instruments open its second facility?
+    Corrymoor
+
+[b13] Which co-founder of Marrowvane Instruments served as chief optical engineer?
+    Edda Marrowvane
+
+[b14] Which co-founder of Marrowvane Instruments served as managing director?
+    Piotr Kessel
+
+[b15] Who is the head of metrology at Marrowvane Instruments?
+    Ruth Alderfield
+
+[b16] Who is the production lead at Marrowvane Instruments?
+    Tomas Rhee
+
+[b17] Who is the QA director at Marrowvane Instruments?
+    Ingrid Salcombe
+
+[b18] Who is the chief financial officer of Marrowvane Instruments?
+    Marcus Oyelaran
+
+[c01] How many years passed between the founding of Marrowvane Instruments and its renaming?
+    4 years
+
+[c03] How many years passed between the Building C fire and the Halcyon 1 recall at Marrowvane Instruments?
+    11 years
+
+[c04] How many units did Marrowvane Instruments ship in total across 2010 to 2017 inclusive?
+    14,362
+
+[c05] How many units did Marrowvane Instruments ship across 2014 and 2015 combined?
+    4,368
+
+[c06] What is the difference between Marrowvane Instruments' highest and lowest annual shipment figures between 2010 and 2017?
+    1,551
+
+[c07] In how many years between 2010 and 2017 did Marrowvane Instruments' shipments fall relative to the previous year?
+    2 years
+
+[c10] Which Marrowvane Instruments collimator codename was the current generation at the time of the Building C fire?
+    Quennick
+
+[c11] Which Marrowvane Instruments collimator codename was the current generation when Ingrid Salcombe joined?
+    Drovemark
+
+[c12] For how many years did Edda Marrowvane work at the company she co-founded?
+    15 years
+
+[c13] For how many years did Piotr Kessel serve as managing director of Marrowvane Instruments?
+    22 years
+
+[c14] By how much did the launch list price rise from Marrowvane Instruments' first-generation collimator to its fifth?
+    £12,550
+
+[c15] Which Marrowvane Instruments collimator codename was the current generation when Sennick Holdings took its stake?
+    Vurnick
+
+[c16] What was Marrowvane Instruments' mean annual unit shipment figure across 2010 to 2017?
+    1,795.25
+
+[c21] How many units did Marrowvane Instruments ship across 2011, 2012 and 2013 combined?
+    3,925
+
+[c22] What was Marrowvane Instruments' mean annual unit shipment figure across 2010 to 2013?
+    1,282.25
+
+[c23] By how many units did Marrowvane Instruments' annual shipments grow between 2010 and 2017?
+    1,457
+
+[c24] What is the combined launch list price of Marrowvane Instruments' first three collimator generations?
+    £18,850
