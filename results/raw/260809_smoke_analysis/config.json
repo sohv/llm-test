@@ -1,0 +1,13 @@
+{
+  "git_hash": "f52470df",
+  "model_id": "claude-sonnet-4-6",
+  "dataset_path": "",
+  "output_dir": "results/raw/260809_smoke_analysis",
+  "num_tasks": null,
+  "n_repeats": 1,
+  "seed": 42,
+  "results_dirs": [
+    "results/raw/260809_nudge_check"
+  ],
+  "consistent_only": true
+}
