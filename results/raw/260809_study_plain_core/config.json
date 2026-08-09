@@ -1,5 +1,5 @@
 {
-  "git_hash": "9e1dcc57",
+  "git_hash": "acd30175",
   "model_id": "claude-sonnet-4-6",
   "dataset_path": "data/processed/questions.jsonl",
   "output_dir": "results/raw/260809_study_plain_core",
