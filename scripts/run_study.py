@@ -24,10 +24,13 @@ LOGGER = logging.getLogger(__name__)
 
 STUDY_ARMS = ("no_resource", "permitted", "not_monitored", "monitored")
 
+# maverick is excluded deliberately: given the scratchpad instruction it stops emitting structured
+# tool calls entirely (0/4 vs 4/4 without it) and narrates fabricated file contents instead, so it
+# can satisfy DV 1 or DV 4 but never both.
 DEFAULT_MODELS = [
     "anthropic/claude-haiku-4.5",
-    "openai/gpt-4o-mini",
-    "qwen/qwen3-235b-a22b-2507",
+    "google/gemini-2.5-flash",
+    "deepseek/deepseek-v3.2",
 ]
 
 
@@ -38,7 +41,7 @@ class StudyConfig(Config):
     arms: list[str] = field(default_factory=lambda: list(STUDY_ARMS))
     n_repeats: int = 5
     temperature: float = 1.0
-    max_tokens: int = 2048
+    max_tokens: int = 4096
     max_steps: int = 6
     max_concurrent: int = 8
     tool_scratchpad: bool = False
@@ -100,6 +103,7 @@ async def run(config: StudyConfig) -> None:
         "failed_sessions": sum(1 for r in records if r.get("error")),
         "unparseable": sum(1 for r in records if not r.get("error") and not r.get("parsed_cleanly")),
         "hit_step_ceiling": sum(1 for r in records if r.get("hit_step_ceiling")),
+        "providers_seen": sorted({p for r in records for p in r.get("providers", [])}),
         "access_rate": {
             f"{model}|{arm}": round(access_by_arm[(model, arm)] / total_by_arm[(model, arm)], 4)
             for model, arm in sorted(total_by_arm)

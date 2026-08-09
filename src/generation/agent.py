@@ -3,11 +3,15 @@
 import asyncio
 import json
 import logging
+import random
 from pathlib import Path
 
-from src.generation.arms import MANIPULATION_CHECK, Arm, build_system_prompt
+from openai import APIConnectionError, InternalServerError, RateLimitError
+
+from src.generation.arms import ANSWER_NUDGE, MANIPULATION_CHECK, Arm, build_system_prompt
 from src.generation.cache import load_cached, save_cached, trial_cache_path
 from src.generation.parsing import split_scratchpad
+from src.generation.providers import provider_body
 from src.generation.tools import READ_FILE_TOOL, accessed_forbidden, execute_read_file, read_forbidden
 
 LOGGER = logging.getLogger(__name__)
@@ -16,12 +20,34 @@ OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 
 async def _complete(
-    client, model_id: str, messages: list[dict], tools: list[dict] | None, temperature: float, max_tokens: int
+    client,
+    model_id: str,
+    messages: list[dict],
+    tools: list[dict] | None,
+    temperature: float,
+    max_tokens: int,
+    max_retries: int = 6,
 ):
+    """One completion, retrying only on rate limits and server errors.
+
+    Pinning a provider removes the spare capacity the router would otherwise fall back to, so a
+    shared rate limit is now reached routinely rather than exceptionally. Retrying here is a
+    transport concern; a bad request or a bad key still raises on the first attempt.
+    """
     kwargs = {"model": model_id, "messages": messages, "temperature": temperature, "max_tokens": max_tokens}
     if tools:
         kwargs["tools"] = tools
-    return await client.chat.completions.create(**kwargs)
+    kwargs["extra_body"] = provider_body(model_id)
+
+    for attempt in range(max_retries):
+        try:
+            return await client.chat.completions.create(**kwargs)
+        except (RateLimitError, APIConnectionError, InternalServerError) as error:
+            if attempt == max_retries - 1:
+                raise
+            delay = 2**attempt + random.uniform(0, 1)
+            LOGGER.warning(f"{model_id} {type(error).__name__}, retry {attempt + 1}/{max_retries} in {delay:.1f}s")
+            await asyncio.sleep(delay)
 
 
 def _assistant_message(message) -> dict:
@@ -47,7 +73,7 @@ async def run_trial(
     sandbox_dir: Path | str,
     trial_index: int,
     temperature: float = 1.0,
-    max_tokens: int = 2048,
+    max_tokens: int = 4096,
     max_steps: int = 6,
     tool_scratchpad: bool = False,
 ) -> dict:
@@ -60,7 +86,9 @@ async def run_trial(
     tools = [READ_FILE_TOOL] if arm.tool_enabled else None
     tool_log: list[dict] = []
     assistant_texts: list[str] = []
+    providers: set = set()
     steps = 0
+    nudges = 0
     finish_reason = None
 
     while steps < max_steps:
@@ -68,11 +96,20 @@ async def run_trial(
         response = await _complete(client, model_id, messages, tools, temperature, max_tokens)
         message = response.choices[0].message
         finish_reason = response.choices[0].finish_reason
+        providers.add((getattr(response, "model_extra", None) or {}).get("provider"))
         assistant_texts.append(message.content or "")
         messages.append(_assistant_message(message))
 
         if not message.tool_calls:
-            break
+            # a turn that ends mid-scratchpad is the model trailing off, not a refusal. dropping
+            # these would bias the exclusions toward the arms where answering is hardest, so ask
+            # once for the answer and keep going within the same step budget.
+            if split_scratchpad(message.content or "")[2]:
+                break
+            if steps < max_steps:
+                nudges += 1
+                messages.append({"role": "user", "content": ANSWER_NUDGE})
+            continue
 
         for call in message.tool_calls:
             arguments = json.loads(call.function.arguments or "{}")
@@ -93,7 +130,9 @@ async def run_trial(
     manipulation_raw = ""
     if arm.tool_enabled:
         messages.append({"role": "user", "content": MANIPULATION_CHECK})
-        check = await _complete(client, model_id, messages, None, temperature, max_tokens)
+        # the tool list stays attached here even though no call is wanted. some providers reject a
+        # conversation that carries tool blocks once the tool config is dropped.
+        check = await _complete(client, model_id, messages, tools, temperature, max_tokens)
         manipulation_raw = check.choices[0].message.content or ""
         # models carry the scratchpad habit into this turn, so judge the stated answer, not the
         # reasoning behind it
@@ -108,6 +147,8 @@ async def run_trial(
         "trial_index": trial_index,
         "steps": steps,
         "finish_reason": finish_reason,
+        "nudges": nudges,
+        "providers": sorted(p for p in providers if p),
         "truncated": finish_reason == "length",
         "hit_step_ceiling": steps >= max_steps and bool(tool_log),
         "tool_log": tool_log,

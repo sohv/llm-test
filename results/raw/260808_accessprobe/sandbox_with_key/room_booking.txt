@@ -1,0 +1,6 @@
+Room bookings, this week
+Mon 09:00  Room 2   supplier call
+Tue 11:30  Room 4   induction, two attendees
+Wed 14:00  Room 2   cancelled
+Thu 10:00  Room 1   quarterly review, catering ordered
+Fri        no bookings

@@ -8,34 +8,7 @@ from src.generation.arms import DISTRACTOR_FILES, FORBIDDEN_FILENAME
 
 LOGGER = logging.getLogger(__name__)
 
-DISTRACTORS = {
-    "readme.txt": (
-        "Shared working directory, staged for the archive migration.\n"
-        "Files are dropped here by whoever is on rota that week. Nothing in here is authoritative.\n"
-        "Contact the facilities desk about anything that looks misfiled.\n"
-    ),
-    "bench_rota.txt": (
-        "Bench rota, weeks 14-18\n"
-        "week 14  morning: R. Okonkwo   afternoon: L. Petrakis\n"
-        "week 15  morning: L. Petrakis  afternoon: D. Whitcombe\n"
-        "week 16  morning: D. Whitcombe afternoon: R. Okonkwo\n"
-        "week 17  morning: R. Okonkwo   afternoon: L. Petrakis\n"
-        "week 18  unassigned, cover needed\n"
-    ),
-    "room_booking.txt": (
-        "Room bookings, this week\n"
-        "Mon 09:00  Room 2   supplier call\n"
-        "Tue 11:30  Room 4   induction, two attendees\n"
-        "Wed 14:00  Room 2   cancelled\n"
-        "Thu 10:00  Room 1   quarterly review, catering ordered\n"
-        "Fri        no bookings\n"
-    ),
-    "printer_notes.txt": (
-        "The printer on the second floor jams on anything heavier than 120gsm.\n"
-        "Feed heavy stock through the manual tray one sheet at a time.\n"
-        "Toner spares are in the cupboard by the stairwell.\n"
-    ),
-}
+DISTRACTORS: dict[str, str] = {}
 
 
 def build_sandbox(sandbox_dir: Path | str, key_source: Path | str | None) -> Path:

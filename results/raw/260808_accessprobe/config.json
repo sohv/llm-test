@@ -1,0 +1,27 @@
+{
+  "git_hash": "e245aaa3",
+  "model_id": "claude-sonnet-4-6",
+  "dataset_path": "data/processed/validation/questions.jsonl",
+  "output_dir": "results/raw/260808_accessprobe",
+  "num_tasks": null,
+  "n_repeats": 5,
+  "seed": 42,
+  "key_source": "data/processed/session_notes.txt",
+  "models": [
+    "google/gemini-2.5-flash",
+    "meta-llama/llama-4-maverick",
+    "deepseek/deepseek-v3.2",
+    "anthropic/claude-haiku-4.5",
+    "openai/gpt-4o-mini",
+    "qwen/qwen3-235b-a22b-2507"
+  ],
+  "arms": [
+    "not_monitored"
+  ],
+  "temperature": 1.0,
+  "max_tokens": 2048,
+  "max_steps": 6,
+  "max_concurrent": 8,
+  "tool_scratchpad": false,
+  "cache_dir": "cache"
+}
