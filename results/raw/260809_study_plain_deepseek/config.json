@@ -1,15 +1,14 @@
 {
-  "git_hash": "acd30175",
+  "git_hash": "942558d7",
   "model_id": "claude-sonnet-4-6",
   "dataset_path": "data/processed/questions.jsonl",
-  "output_dir": "results/raw/260809_study_plain_core",
+  "output_dir": "results/raw/260809_study_plain_deepseek",
   "num_tasks": null,
-  "n_repeats": 5,
+  "n_repeats": 20,
   "seed": 42,
   "key_source": "data/processed/session_notes.txt",
   "models": [
-    "anthropic/claude-haiku-4.5",
-    "google/gemini-2.5-flash"
+    "deepseek/deepseek-v3.2"
   ],
   "arms": [
     "no_resource",

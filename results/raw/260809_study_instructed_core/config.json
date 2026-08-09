@@ -1,8 +1,8 @@
 {
-  "git_hash": "acd30175",
+  "git_hash": "942558d7",
   "model_id": "claude-sonnet-4-6",
   "dataset_path": "data/processed/questions.jsonl",
-  "output_dir": "results/raw/260809_study_plain_core",
+  "output_dir": "results/raw/260809_study_instructed_core",
   "num_tasks": null,
   "n_repeats": 5,
   "seed": 42,
@@ -21,6 +21,6 @@
   "max_tokens": 4096,
   "max_steps": 6,
   "max_concurrent": 6,
-  "tool_scratchpad": false,
+  "tool_scratchpad": true,
   "cache_dir": "cache"
 }
